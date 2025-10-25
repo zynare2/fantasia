@@ -50,117 +50,179 @@
 
   // Data model
   const center = { id:'necromancer', label:'Necromancer', detail:'Master of death and shadow', glyph:'rune' };
-  // Data-driven nodes (20+), single primary parent (first prereq) used for layout
-  const nodes = [
-    center,
-    // Tier 1 branches
-    { id:'dark-bullet', label:'Dark Bullet', glyph:'bullet', prereq:['necromancer'], subclass:'Dark Magic' },
-    { id:'necromancy', label:'Necromancy', glyph:'skull', prereq:['necromancer'], subclass:'Necromancer' },
-    { id:'shadow-binding', label:'Shadow Binding', glyph:'chains', prereq:['necromancer'], subclass:'Trapper' },
-    { id:'life-siphon', label:'Charm Siphon', glyph:'vessel', prereq:['necromancer'], subclass:'Succubus' },
-    { id:'curse-of-frailty', label:'Curse of Frailty', glyph:'rune', prereq:['necromancer'], subclass:'Witchcraft' },
-    // Tier 2 children
-    { id:'vessel-creation', label:'Vessel Creation', glyph:'vessel', prereq:['necromancy'], subclass:'Necromancer' },
-    { id:'raise-skeleton', label:'Raise Skeleton', glyph:'skull', prereq:['necromancy'], subclass:'Necromancer' },
-    { id:'bone-armor', label:'Bone Armor', glyph:'shield', prereq:['raise-skeleton'], subclass:'Necromancer' },
-    { id:'grave-pact', label:'Grave Pact', glyph:'hand', prereq:['necromancy'], subclass:'Necromancer' },
-    { id:'command-undead', label:'Command Undead', glyph:'eye', prereq:['necromancy'], subclass:'Necromancer' },
-    { id:'shadow-sewing', label:'Shadow Sewing', glyph:'needle', prereq:['shadow-binding'], subclass:'Trapper' },
-    { id:'night-veil', label:'Night Veil', glyph:'web', prereq:['shadow-binding'], subclass:'Trapper' },
-    { id:'shadow-step', label:'Shadow Step', glyph:'dagger', prereq:['shadow-binding'], subclass:'Trapper' },
-    { id:'incendiary-regulation', label:'Incendiary Regulation', glyph:'flame', prereq:['necromancer'], subclass:'Sentinel' },
-    { id:'time-to-cook', label:'Time to Cook', glyph:'bottle', prereq:['necromancer'], subclass:'Alchemist' },
-    // Tier 3
-    { id:'wraith-summon', label:'Summon Wraith', glyph:'orb', prereq:['command-undead'], subclass:'Necromancer' },
-    { id:'bone-golem', label:'Bone Golem', glyph:'bone', prereq:['raise-skeleton'], subclass:'Necromancer' },
-    { id:'soul-harvest', label:'Enthrall', glyph:'rune', prereq:['life-siphon'], subclass:'Succubus' },
-    { id:'soul-battery', label:'Enthrall Battery', glyph:'orb', prereq:['soul-harvest'], subclass:'Succubus' },
-    { id:'bloodletting', label:'Bloodletting', glyph:'dagger', prereq:['necromancer'], subclass:'Hemomancer' },
-    { id:'hemorrhage', label:'Hemorrhage', glyph:'dagger', prereq:['bloodletting'], subclass:'Hemomancer' },
-    { id:'sanguine-ward', label:'Sanguine Ward', glyph:'shield', prereq:['bloodletting'], subclass:'Hemomancer' },
-    { id:'arterial-surge', label:'Arterial Surge', glyph:'dagger', prereq:['hemorrhage'], subclass:'Hemomancer' },
-    { id:'vitae-drain', label:'Vitae Drain', glyph:'vessel', prereq:['sanguine-ward'], subclass:'Hemomancer' },
-    { id:'crimson-maelstrom', label:'Crimson Maelstrom', glyph:'orb', prereq:['arterial-surge'], subclass:'Hemomancer' },
-    { id:'blood-ritual', label:'Blood Ritual', glyph:'rune', prereq:['vitae-drain'], subclass:'Hemomancer' },
-    { id:'witchfire', label:'Witchfire', glyph:'flame', prereq:['evil-eye'], subclass:'Witchcraft' },
-    { id:'wither', label:'Wither', glyph:'rune', prereq:['curse-of-frailty'], subclass:'Witchcraft' },
-    { id:'doom', label:'Doom', glyph:'rune', prereq:['hexweave'], subclass:'Witchcraft' },
-    { id:'silence', label:'Silence', glyph:'rune', prereq:['evil-eye'], subclass:'Witchcraft' },
-    { id:'raven-scout', label:'Raven Scout', glyph:'raven', prereq:['night-veil'], subclass:'Trapper' },
-    // Expanded branches
-    // Dark Magic
-    { id:'void-lance', label:'Void Lance', glyph:'bullet', prereq:['dark-bullet'], subclass:'Dark Magic' },
-    { id:'shadow-burst', label:'Shadow Burst', glyph:'orb', prereq:['dark-bullet'], subclass:'Dark Magic' },
-    { id:'entropy-mark', label:'Entropy Mark', glyph:'rune', prereq:['dark-bullet'], subclass:'Dark Magic' },
-    { id:'abyssal-comet', label:'Abyssal Comet', glyph:'orb', prereq:['void-lance'], subclass:'Dark Magic' },
-    { id:'umbral-nova', label:'Umbral Nova', glyph:'orb', prereq:['shadow-burst'], subclass:'Dark Magic' },
-    // Necromancer
-    { id:'grave-harvest', label:'Grave Harvest', glyph:'hand', prereq:['necromancy'], subclass:'Necromancer' },
-    { id:'rotting-plague', label:'Rotting Plague', glyph:'rune', prereq:['necromancy'], subclass:'Necromancer' },
-    { id:'black-phalanx', label:'Black Phalanx', glyph:'shield', prereq:['bone-armor'], subclass:'Necromancer' },
-    { id:'lichdom', label:'Lichdom', glyph:'rune', prereq:['grave-pact'], subclass:'Necromancer' },
-    // Trapper
-    { id:'snare-runes', label:'Snare Runes', glyph:'rune', prereq:['shadow-binding'], subclass:'Trapper' },
-    { id:'gloom-mines', label:'Gloom Mines', glyph:'orb', prereq:['shadow-binding'], subclass:'Trapper' },
-    { id:'nether-trap', label:'Nether Trap', glyph:'web', prereq:['snare-runes'], subclass:'Trapper' },
-    { id:'silk-ambush', label:'Silk Ambush', glyph:'needle', prereq:['shadow-sewing'], subclass:'Trapper' },
-    // Hemomancer
-    { id:'blood-meteor', label:'Blood Meteor', glyph:'orb', prereq:['blood-ritual'], subclass:'Hemomancer' },
-    { id:'scarlet-apotheosis', label:'Scarlet Apotheosis', glyph:'rune', prereq:['crimson-maelstrom'], subclass:'Hemomancer' },
-    // Witchcraft
-    { id:'hexweave', label:'Hexweave', glyph:'rune', prereq:['curse-of-frailty'], subclass:'Witchcraft' },
-    { id:'evil-eye', label:'Evil Eye', glyph:'eye', prereq:['curse-of-frailty'], subclass:'Witchcraft' },
-    { id:'malison', label:'Malison', glyph:'rune', prereq:['hexweave'], subclass:'Witchcraft' },
-    { id:'witchfire', label:'Witchfire', glyph:'flame', prereq:['evil-eye'], subclass:'Witchcraft' },
-    // Sentinel
-    { id:'stone-skin', label:'Stone Skin', glyph:'shield', prereq:['incendiary-regulation'], subclass:'Sentinel' },
-    { id:'iron-will', label:'Iron Will', glyph:'hand', prereq:['incendiary-regulation'], subclass:'Sentinel' },
-    { id:'phoenix-heart', label:'Phoenix Heart', glyph:'flame', prereq:['incendiary-regulation'], subclass:'Sentinel' },
-    { id:'unbreakable', label:'Unbreakable', glyph:'shield', prereq:['iron-will'], subclass:'Sentinel' },
-    // Alchemist
-    { id:'brew-volatile', label:'Brew Volatile', glyph:'bottle', prereq:['time-to-cook'], subclass:'Alchemist' },
-    { id:'acid-flask', label:'Acid Flask', glyph:'bottle', prereq:['time-to-cook'], subclass:'Alchemist' },
-    { id:'homunculus', label:'Homunculus', glyph:'orb', prereq:['brew-volatile'], subclass:'Alchemist' },
-    { id:'dragon-tincture', label:'Dragon Tincture', glyph:'vessel', prereq:['acid-flask'], subclass:'Alchemist' },
-    // Succubus
-    { id:'allure', label:'Allure', glyph:'eye', prereq:['life-siphon'], subclass:'Succubus' },
-    { id:'night-kiss', label:'Night Kiss', glyph:'hand', prereq:['life-siphon'], subclass:'Succubus' },
-    { id:'dominate', label:'Dominate', glyph:'eye', prereq:['allure'], subclass:'Succubus' },
-    { id:'essence-bond', label:'Essence Bond', glyph:'rune', prereq:['night-kiss'], subclass:'Succubus' },
-    // Tier 4-5 apex additions per subclass
-    { id:'event-horizon', label:'Event Horizon', glyph:'orb', prereq:['abyssal-comet'], subclass:'Dark Magic' },
-    { id:'singularity', label:'Singularity', glyph:'orb', prereq:['umbral-nova'], subclass:'Dark Magic' },
-    { id:'army-of-bones', label:'Army of Bones', glyph:'skull', prereq:['black-phalanx'], subclass:'Necromancer' },
-    { id:'deathlord', label:'Deathlord', glyph:'rune', prereq:['lichdom'], subclass:'Necromancer' },
-    { id:'nocturne-web', label:'Nocturne Web', glyph:'web', prereq:['nether-trap'], subclass:'Trapper' },
-    { id:'midnight-collapse', label:'Midnight Collapse', glyph:'web', prereq:['silk-ambush'], subclass:'Trapper' },
-    { id:'grand-hex', label:'Grand Hex', glyph:'rune', prereq:['malison'], subclass:'Witchcraft' },
-    { id:'black-sabbath', label:'Black Sabbath', glyph:'flame', prereq:['witchfire'], subclass:'Witchcraft' },
-    { id:'adamantine-aegis', label:'Adamantine Aegis', glyph:'shield', prereq:['unbreakable'], subclass:'Sentinel' },
-    { id:'immortal-stand', label:'Immortal Stand', glyph:'hand', prereq:['phoenix-heart'], subclass:'Sentinel' },
-    { id:'philosophers-storm', label:"Philosopher's Storm", glyph:'bottle', prereq:['homunculus'], subclass:'Alchemist' },
-    { id:'primal-elixir', label:'Primal Elixir', glyph:'vessel', prereq:['dragon-tincture'], subclass:'Alchemist' },
-    { id:'soul-throne', label:'Soul Throne', glyph:'eye', prereq:['dominate'], subclass:'Succubus' },
-    { id:'sovereign-temptation', label:'Sovereign Temptation', glyph:'hand', prereq:['essence-bond'], subclass:'Succubus' },
-  ];
+  // Base nodes now defined via CUSTOM_SKILLS; keep only center here
+  const nodes = [ center ];
 
   // Modular extension: add new skills by specifying subclass, tier, and optional requires
-  // Example item: { id, label, glyph, subclass:'Witchcraft', tier:3, requires:'hexweave' }
-  const CUSTOM_SKILLS = [];
+  // Supports nested children. Example:
+  // { id, label, glyph, subclass:'Witchcraft', tier:3, requires:'hexweave', desc:'text', children:[{...}] }
+  const CUSTOM_SKILLS = [
+    // Core tier-1 branch roots
+    { subclass:'Dark Magic', start:'necromancer', chain:[
+      { id:'dark-bullet', label:'Dark Bullet', glyph:'bullet', desc:'A quick, piercing dart of darkness.' },
+      { id:'void-lance', label:'Void Lance', glyph:'bullet', desc:'A concentrated lance that rips through ranks.' },
+      { id:'abyssal-comet', label:'Abyssal Comet', glyph:'orb', desc:'Call a void comet to crater the field.' },
+      { id:'event-horizon', label:'Event Horizon', glyph:'orb', desc:'Crush space itself; nothing escapes.' },
+      { id:'singularity', label:'Singularity', glyph:'orb', desc:'Unstable point that consumes the battlefield.' }
+    ]},
+    { subclass:'Necromancer', start:'necromancer', chain:[
+      { id:'necromancy', label:'Necromancy', glyph:'skull', desc:'Raise the dead and bind their wills.' },
+      { id:'grave-harvest', label:'Grave Harvest', glyph:'hand', desc:'Reap remnants to empower your retinue.' },
+      { id:'rotting-plague', label:'Rotting Plague', glyph:'rune', desc:'Spreading decay that softens armies.' },
+      { id:'lichdom', label:'Lichdom', glyph:'rune', desc:'Transcend life; power without breath.' },
+      { id:'deathlord', label:'Deathlord', glyph:'rune', desc:'Absolute command over legions of dead.' }
+    ]},
+    { subclass:'Trapper', start:'necromancer', chain:[
+      { id:'shadow-binding', label:'Shadow Binding', glyph:'chains', desc:'Shadows seize ankles and wills.' },
+      { id:'snare-runes', label:'Snare Runes', glyph:'rune', desc:'Scripted catches that spring silently.' },
+      { id:'nether-trap', label:'Nether Trap', glyph:'web', desc:'Planar drag that saps strength.' },
+      { id:'nocturne-web', label:'Nocturne Web', glyph:'web', desc:'A night lattice that halts battalions.' }
+    ]},
+    { subclass:'Trapper', start:'shadow-binding', chain:[
+      { id:'shadow-sewing', label:'Shadow Sewing', glyph:'needle', desc:'Stitch light to bind every step.' },
+      { id:'silk-ambush', label:'Silk Ambush', glyph:'needle', desc:'Hidden filaments that strike unseen.' },
+      { id:'midnight-collapse', label:'Midnight Collapse', glyph:'web', desc:'Crush the snared in a sudden fall.' }
+    ]},
+    { subclass:'Trapper', start:'shadow-binding', chain:[
+      { id:'night-veil', label:'Night Veil', glyph:'web', desc:'A veil of gloom that blinds and chills.' },
+      { id:'raven-scout', label:'Raven Scout', glyph:'raven', desc:'Eyes in the dark; mark and reveal.' }
+    ]},
+    { subclass:'Hemomancer', start:'necromancer', chain:[
+      { id:'bloodletting', label:'Bloodletting', glyph:'dagger', desc:'Power for blood, blood for power.' },
+      { id:'hemorrhage', label:'Hemorrhage', glyph:'dagger', desc:'Internal bleeding builds into bursts.' },
+      { id:'arterial-surge', label:'Arterial Surge', glyph:'dagger', desc:'Turn loss into explosive force.' },
+      { id:'crimson-maelstrom', label:'Crimson Maelstrom', glyph:'orb', desc:'A storm of shredding sanguine.' },
+      { id:'scarlet-apotheosis', label:'Scarlet Apotheosis', glyph:'rune', desc:'Ascend by blood into terrible grace.' }
+    ]},
+    { subclass:'Hemomancer', start:'bloodletting', chain:[
+      { id:'sanguine-ward', label:'Sanguine Ward', glyph:'shield', desc:'A barrier fed by your life.' },
+      { id:'vitae-drain', label:'Vitae Drain', glyph:'vessel', desc:'Sip vitality to refill the chalice.' },
+      { id:'blood-ritual', label:'Blood Ritual', glyph:'rune', desc:'A pact of cost for overwhelming might.' },
+      { id:'blood-meteor', label:'Blood Meteor', glyph:'orb', desc:'Hurl congealed fury from the sky.' }
+    ]},
+    { subclass:'Witchcraft', start:'necromancer', chain:[
+      { id:'curse-of-frailty', label:'Curse of Frailty', glyph:'rune', desc:'Strip strength; make the mighty brittle.' },
+      { id:'hexweave', label:'Hexweave', glyph:'rune', desc:'Layer curses into a suffocating weave.' },
+      { id:'malison', label:'Malison', glyph:'rune', desc:'Deep curse that worsens with every strike.' },
+      { id:'grand-hex', label:'Grand Hex', glyph:'rune', desc:'A reality-bending malediction.' }
+    ]},
+    { subclass:'Witchcraft', start:'curse-of-frailty', chain:[
+      { id:'evil-eye', label:'Evil Eye', glyph:'eye', desc:'A gaze that withers resolve.' },
+      { id:'witchfire', label:'Witchfire', glyph:'flame', desc:'Eldritch flame that eats defenses.' },
+      { id:'black-sabbath', label:'Black Sabbath', glyph:'flame', desc:'A rite that drowns armies in ruin.' }
+    ]},
+    { subclass:'Witchcraft', start:'evil-eye', chain:[
+      { id:'silence', label:'Silence', glyph:'rune', desc:'Still the voice of magic.' }
+    ]},
+    { subclass:'Sentinel', start:'necromancer', chain:[
+      { id:'incendiary-regulation', label:'Incendiary Regulation', glyph:'flame', desc:'Harness inner fire into discipline.' },
+      { id:'iron-will', label:'Iron Will', glyph:'hand', desc:'Resolve that does not bend.' },
+      { id:'unbreakable', label:'Unbreakable', glyph:'shield', desc:'Stagger turns to mere shivers.' },
+      { id:'adamantine-aegis', label:'Adamantine Aegis', glyph:'shield', desc:'A near-absolute bulwark.' }
+    ]},
+    { subclass:'Sentinel', start:'incendiary-regulation', chain:[
+      { id:'stone-skin', label:'Stone Skin', glyph:'shield', desc:'Flesh like rock; steady and sure.' },
+      { id:'phoenix-heart', label:'Phoenix Heart', glyph:'flame', desc:'Kindle back from ruin again and again.' },
+      { id:'immortal-stand', label:'Immortal Stand', glyph:'hand', desc:'For a moment, you do not fall.' }
+    ]},
+    { subclass:'Alchemist', start:'necromancer', chain:[
+      { id:'time-to-cook', label:'Time to Cook', glyph:'bottle', desc:'Unlock recipes from scavenged reagents.' },
+      { id:'brew-volatile', label:'Brew Volatile', glyph:'bottle', desc:'Unstable mixtures for thunder and smoke.' },
+      { id:'homunculus', label:'Homunculus', glyph:'orb', desc:'An assistant to extend your craft.' },
+      { id:'philosophers-storm', label:"Philosopher's Storm", glyph:'bottle', desc:'The lab unleashed upon the world.' }
+    ]},
+    { subclass:'Alchemist', start:'time-to-cook', chain:[
+      { id:'acid-flask', label:'Acid Flask', glyph:'bottle', desc:'Armor-melting tinctures on demand.' },
+      { id:'dragon-tincture', label:'Dragon Tincture', glyph:'vessel', desc:'Rare tonic that surges power at a cost.' },
+      { id:'primal-elixir', label:'Primal Elixir', glyph:'vessel', desc:'Mind and body supercharged to the brink.' }
+    ]},
+    { subclass:'Succubus', start:'necromancer', chain:[
+      { id:'life-siphon', label:'Charm Siphon', glyph:'vessel', desc:'Sip life from those who adore you.' },
+      { id:'allure', label:'Allure', glyph:'eye', desc:'Lower every guard with a glance.' },
+      { id:'dominate', label:'Dominate', glyph:'eye', desc:'Seize the reins of a weakened mind.' },
+      { id:'soul-throne', label:'Soul Throne', glyph:'eye', desc:'Rule from a seat of bound souls.' }
+    ]},
+    { subclass:'Succubus', start:'life-siphon', chain:[
+      { id:'night-kiss', label:'Night Kiss', glyph:'hand', desc:'A mark that drains and binds.' },
+      { id:'essence-bond', label:'Essence Bond', glyph:'rune', desc:'Your fate entwined; harm and boon shared.' },
+      { id:'sovereign-temptation', label:'Sovereign Temptation', glyph:'hand', desc:'Even leaders kneel to your will.' }
+    ]},
+
+    // Additional example chains previously added
+    { subclass:'Witchcraft', start:'hexweave', chain:[
+      { id:'hex-storm', label:'Hex Storm', glyph:'rune', desc:'Burst of layered maledictions that cascade on impact.' },
+      { id:'hex-maelstrom', label:'Hex Maelstrom', glyph:'rune', desc:'A spiraling torrent of curses amplifying all afflictions.' }
+    ]},
+    { subclass:'Trapper', start:'shadow-binding', chain:[
+      { id:'snare-matrix', label:'Snare Matrix', glyph:'web', desc:'Interlinked snares multiply restraint with each trigger.' },
+      { id:'shadow-cage', label:'Shadow Cage', glyph:'web', desc:'A collapsing lattice that imprisons and weakens.' }
+    ]},
+    { subclass:'Alchemist', start:'time-to-cook', chain:[
+      { id:'mercury-bomb', label:'Mercury Bomb', glyph:'bottle', desc:'Volatile mercury charge shatters armor and poise.' },
+      { id:'fulminate-core', label:'Fulminate Core', glyph:'bottle', desc:'Condensed explosive core for catastrophic detonations.' }
+    ]},
+    { subclass:'Sentinel', start:'iron-will', chain:[
+      { id:'obsidian-guard', label:'Obsidian Guard', glyph:'shield', desc:'A hard-black guard that drinks the shock of blows.' },
+      { id:'bastion-dome', label:'Bastion Dome', glyph:'shield', desc:'Deploy a dome that turns sieges into pebbles.' }
+    ]},
+    { subclass:'Hemomancer', start:'bloodletting', chain:[
+      { id:'blood-sear', label:'Blood Sear', glyph:'dagger', desc:'Scalding blood brands foes, stacking pain.' },
+      { id:'scarlet-overlord', label:'Scarlet Overlord', glyph:'rune', desc:'Rule the battlefield with sanguine dominion.' }
+    ]},
+    { subclass:'Succubus', start:'life-siphon', chain:[
+      { id:'velvet-thrall', label:'Velvet Thrall', glyph:'eye', desc:'Your admirers become your willing shields.' },
+      { id:'queen-of-hearts', label:'Queen of Hearts', glyph:'hand', desc:'Absolute enthrallment bends crowds to your whim.' }
+    ]},
+    { subclass:'Dark Magic', start:'dark-bullet', chain:[
+      { id:'umbral-needle', label:'Umbral Needle', glyph:'bullet', desc:'A precise pierce that bleeds darkness.' },
+      { id:'penumbra-lance', label:'Penumbra Lance', glyph:'bullet', desc:'A charged lance that ruptures lines.' }
+    ]},
+    { subclass:'Necromancer', start:'necromancy', chain:[
+      { id:'grave-march', label:'Grave March', glyph:'skull', desc:'Your dead march faster, harder, together.' },
+      { id:'ossuary-king', label:'Ossuary King', glyph:'skull', desc:'Crown of bone bolsters every minion.' }
+    ]},
+  ];
   function computeTier(id){ let t=0, cur=id; while(cur && cur!==center.id){ const p = primaryParent[cur]; if(!p) break; t++; cur=p; } return t; }
-  function addCustomSkills(list){
+  function addCustomSkills(list, parentId=null, inheritSubclass=null){
+    if(!Array.isArray(list)) return;
     list.forEach(s=>{
-      if(!s || !s.id || !s.subclass || !s.tier) return;
-      let prereqId = null;
-      if(s.requires) prereqId = s.requires;
-      else if(s.tier===1) prereqId = center.id;
-      else {
-        // find any node in previous tier within same subclass
-        let candidate = null;
-        for(const n of nodes){ if(n.subclass===s.subclass && computeTier(n.id)===(s.tier-1)){ candidate = n.id; break; } }
-        prereqId = candidate || center.id;
+      if(!s) return;
+
+      // Flat chain form: { subclass, start?, chain:[ {id,label,glyph,desc}, ... ] }
+      if(Array.isArray(s.chain) && s.chain.length){
+        const scChain = s.subclass || inheritSubclass; if(!scChain) return;
+        let prev = s.start || parentId || center.id;
+        s.chain.forEach(c => {
+          if(!c || !c.id) return;
+          const node = { id:c.id, label:c.label||c.id, glyph:c.glyph||'rune', prereq:[prev], subclass:scChain };
+          if(c.desc) node.desc = c.desc;
+          nodes.push(node);
+          prev = c.id;
+        });
+        return;
       }
-      nodes.push({ id:s.id, label:s.label||s.id, glyph:s.glyph||'rune', prereq:[prereqId], subclass:s.subclass });
+
+      // Single node form (optionally with children)
+      if(!s.id) return;
+      const sc = s.subclass || inheritSubclass; if(!sc) return; // require subclass at top level
+      let prereqId = parentId;
+      if(!prereqId){
+        if(s.requires) prereqId = s.requires;
+        else if(s.tier===1) prereqId = center.id;
+        else if(s.tier>1){
+          let candidate = null;
+          for(const n of nodes){ if(n.subclass===sc && computeTier(n.id)===(s.tier-1)){ candidate = n.id; break; } }
+          prereqId = candidate || center.id;
+        } else {
+          prereqId = center.id;
+        }
+      }
+      const node = { id:s.id, label:s.label||s.id, glyph:s.glyph||'rune', prereq:[prereqId], subclass:sc };
+      if(s.desc) node.desc = s.desc;
+      nodes.push(node);
+      if(Array.isArray(s.children) && s.children.length){
+        addCustomSkills(s.children, s.id, sc);
+      }
     });
   }
   // Apply any custom skills
@@ -168,7 +230,7 @@
   // primaryParent not ready yet; temporary map computed after nodes to support computeTier during additions below
 
   // Fast lookup
-  const nodeById = new Map(nodes.map(n => [n.id, n]));
+  let nodeById = new Map(nodes.map(n => [n.id, n]));
 
   let cx = width/2, cy = height/2;
   const nodeSize = 44; // slightly larger sizing basis to create more spacing
@@ -178,6 +240,7 @@
   // Now that primaryParent exists, allow modular custom skills to be injected
   addCustomSkills(CUSTOM_SKILLS);
   // Rebuild maps after injection
+  nodeById = new Map(nodes.map(n => [n.id, n]));
   Object.keys(primaryParent).forEach(k=> delete primaryParent[k]);
   nodes.forEach(n=>{ primaryParent[n.id] = (n.prereq && n.prereq[0]) || null; });
   const children = {}; nodes.forEach(n=> children[n.id] = []);
@@ -205,7 +268,7 @@
     const p = primaryParent[id];
     return p ? resolveSubclass(p) : null;
   }
-  nodes.forEach(n=>{ if(n.id!==center.id){ n.subclass = resolveSubclass(n.id) || SUBCLASSES[(hashCode(n.id)%SUBCLASSES.length)]; } });
+  nodes.forEach(n=>{ if(n.id!==center.id){ n.subclass = n.subclass || resolveSubclass(n.id) || SUBCLASSES[(hashCode(n.id)%SUBCLASSES.length)]; } });
   const subclasses = SUBCLASSES; // enforce fixed set/order
   // Assign each subclass to an equal angular sector around -π/2 (upwards)
   const sectorMap = {}; // subclass -> {start,end,base}
@@ -548,7 +611,10 @@
       'sovereign-temptation':'Absolute allure that turns leaders.',
     };
     const t = Math.max(1, depth[id] || 1);
-    const text = desc[id] || '';
+    // Prefer custom per-node description if provided via CUSTOM_SKILLS
+    const n = nodeById.get(id);
+    const custom = n && n.desc ? n.desc : '';
+    const text = custom || desc[id] || '';
     return text ? `T${t}: ${text}` : '';
   }
 
