@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "fantasia/fantasia/wsgi.py",
+      "use": "@vercel/python",
+      "config": { "runtime": "python3.11" }
+    }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "fantasia/fantasia/wsgi.py" }
+  ]
+}
+
+
