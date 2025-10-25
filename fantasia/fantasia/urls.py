@@ -15,49 +15,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from django.http import HttpResponse
+from django.urls import path, include
 
-
-def test(request):
-    return HttpResponse("Hello from fantasia on Vercel")
-
-
-def static_test(request):
-    return HttpResponse(
-        """
-        <!doctype html>
-        <html>
-          <head>
-            <link rel=\"stylesheet\" href=\"/static/css/test.css\">
-          </head>
-          <body>
-            <h1>Static OK</h1>
-            <p>This page uses /static/css/test.css</p>
-          </body>
-        </html>
-        """,
-        content_type="text/html",
-    )
-
-
-def image_test(request):
-    return HttpResponse(
-        """
-        <!doctype html>
-        <html>
-          <body>
-            <h1>Image Test</h1>
-            <img src=\"/static/img/test.svg\" alt=\"test image\" width=\"300\"/>
-          </body>
-        </html>
-        """,
-        content_type="text/html",
-    )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('test/', test, name='test'),
-    path('static-test/', static_test, name='static_test'),
-    path('image-test/', image_test, name='image_test'),
+    path('', include('skills.urls')),
 ]

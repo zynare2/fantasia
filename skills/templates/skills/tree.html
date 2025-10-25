@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Fantasia Skill Tree</title>
+    <link rel="stylesheet" href="/static/skills/tree.css">
+  </head>
+  <body>
+    <div class="skill-tree-container">
+      <svg class="skill-tree" viewBox="0 0 1200 700" width="100%" height="100%" aria-label="Skill Tree">
+        <!-- Paths between nodes -->
+        <defs>
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+          <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#56ccf2" />
+          </marker>
+        </defs>
+
+        <!-- Stylized links -->
+        <path class="link" d="M150,600 C350,600 300,450 450,450"/>
+        <path class="link" d="M450,450 C600,450 600,300 750,300"/>
+        <path class="link" d="M750,300 C900,300 900,150 1050,150"/>
+
+        <!-- Nodes -->
+        <g class="node" transform="translate(150,600)">
+          <circle r="40" class="node-bg"/>
+          <text class="node-label" y="5">Novice</text>
+        </g>
+        <g class="node" transform="translate(450,450)">
+          <circle r="45" class="node-bg"/>
+          <text class="node-label" y="5">Adept</text>
+        </g>
+        <g class="node" transform="translate(750,300)">
+          <circle r="50" class="node-bg"/>
+          <text class="node-label" y="5">Expert</text>
+        </g>
+        <g class="node" transform="translate(1050,150)">
+          <circle r="55" class="node-bg"/>
+          <text class="node-label" y="5">Master</text>
+        </g>
+      </svg>
+    </div>
+
+    <script src="/static/skills/tree.js"></script>
+  </body>
+</html>

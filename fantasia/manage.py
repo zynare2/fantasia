@@ -6,6 +6,11 @@ import sys
 
 def main():
     """Run administrative tasks."""
+    # Ensure repo root is importable (apps like `skills` live at project root)
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    repo_root = os.path.dirname(current_dir)
+    if repo_root not in sys.path:
+        sys.path.append(repo_root)
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'fantasia.settings')
     try:
         from django.core.management import execute_from_command_line

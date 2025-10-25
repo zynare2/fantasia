@@ -1,0 +1,6 @@
+.skill-tree-container{height:100vh;background:radial-gradient(1200px 700px at 50% 50%,#0b1220 0%,#070b14 55%,#05070e 100%);}
+.skill-tree{display:block}
+.link{fill:none;stroke:#56ccf2;stroke-width:6px;filter:url(#glow);stroke-linecap:round;stroke-dasharray:6 6}
+.node .node-bg{fill:#0e1629;stroke:#9b51e0;stroke-width:3px;filter:url(#glow)}
+.node:hover .node-bg{stroke:#f2c94c}
+.node .node-label{font:700 14px/1.2 Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;fill:#e6eefc;text-anchor:middle}
