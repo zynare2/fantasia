@@ -144,6 +144,29 @@
     { id:'sovereign-temptation', label:'Sovereign Temptation', glyph:'hand', prereq:['essence-bond'], subclass:'Succubus' },
   ];
 
+  // Modular extension: add new skills by specifying subclass, tier, and optional requires
+  // Example item: { id, label, glyph, subclass:'Witchcraft', tier:3, requires:'hexweave' }
+  const CUSTOM_SKILLS = [];
+  function computeTier(id){ let t=0, cur=id; while(cur && cur!==center.id){ const p = primaryParent[cur]; if(!p) break; t++; cur=p; } return t; }
+  function addCustomSkills(list){
+    list.forEach(s=>{
+      if(!s || !s.id || !s.subclass || !s.tier) return;
+      let prereqId = null;
+      if(s.requires) prereqId = s.requires;
+      else if(s.tier===1) prereqId = center.id;
+      else {
+        // find any node in previous tier within same subclass
+        let candidate = null;
+        for(const n of nodes){ if(n.subclass===s.subclass && computeTier(n.id)===(s.tier-1)){ candidate = n.id; break; } }
+        prereqId = candidate || center.id;
+      }
+      nodes.push({ id:s.id, label:s.label||s.id, glyph:s.glyph||'rune', prereq:[prereqId], subclass:s.subclass });
+    });
+  }
+  // Apply any custom skills
+  // (leave CUSTOM_SKILLS empty by default; populate to extend the tree)
+  // primaryParent not ready yet; temporary map computed after nodes to support computeTier during additions below
+
   // Fast lookup
   const nodeById = new Map(nodes.map(n => [n.id, n]));
 
@@ -152,6 +175,11 @@
 
   // Primary parent and children mapping (first prereq)
   const primaryParent = {}; nodes.forEach(n=>{ primaryParent[n.id] = (n.prereq && n.prereq[0]) || null; });
+  // Now that primaryParent exists, allow modular custom skills to be injected
+  addCustomSkills(CUSTOM_SKILLS);
+  // Rebuild maps after injection
+  Object.keys(primaryParent).forEach(k=> delete primaryParent[k]);
+  nodes.forEach(n=>{ primaryParent[n.id] = (n.prereq && n.prereq[0]) || null; });
   const children = {}; nodes.forEach(n=> children[n.id] = []);
   nodes.forEach(n=>{ const p = primaryParent[n.id]; if(p) children[p].push(n.id); });
 
@@ -248,7 +276,7 @@
         const bandDensity = Math.min(1.0, Math.max(0, (count-1)/8));
         const r = ringRadius(dAbs) + bandDensity * (120 + dAbs*20) + (dAbs>=4?60:0);
         let a = start + idx*step;
-        a = clamp(a, sec.start+gut, sec.end-gut);
+      a = clamp(a, sec.start+gut, sec.end-gut);
         angle[id] = a; positions[id] = pol2cart(cx, cy, a, r); setNodeTransform(id);
       });
     });

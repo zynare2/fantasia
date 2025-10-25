@@ -82,7 +82,6 @@
     { id:'vitae-drain', label:'Vitae Drain', glyph:'vessel', prereq:['sanguine-ward'], subclass:'Hemomancer' },
     { id:'crimson-maelstrom', label:'Crimson Maelstrom', glyph:'orb', prereq:['arterial-surge'], subclass:'Hemomancer' },
     { id:'blood-ritual', label:'Blood Ritual', glyph:'rune', prereq:['vitae-drain'], subclass:'Hemomancer' },
-    { id:'witchfire', label:'Witchfire', glyph:'flame', prereq:['evil-eye'], subclass:'Witchcraft' },
     { id:'wither', label:'Wither', glyph:'rune', prereq:['curse-of-frailty'], subclass:'Witchcraft' },
     { id:'doom', label:'Doom', glyph:'rune', prereq:['hexweave'], subclass:'Witchcraft' },
     { id:'silence', label:'Silence', glyph:'rune', prereq:['evil-eye'], subclass:'Witchcraft' },
@@ -121,6 +120,25 @@
     { id:'sovereign-temptation', label:'Sovereign Temptation', glyph:'hand', prereq:['essence-bond'], subclass:'Succubus' },
   ];
 
+  // Modular extension: add new skills by specifying subclass, tier, and optional requires
+  // Example item: { id, label, glyph, subclass:'Witchcraft', tier:3, requires:'hexweave' }
+  const CUSTOM_SKILLS = [];
+  function computeTier(id){ let t=0, cur=id; while(cur && cur!==center.id){ const p = primaryParent[cur]; if(!p) break; t++; cur=p; } return t; }
+  function addCustomSkills(list){
+    list.forEach(s=>{
+      if(!s || !s.id || !s.subclass || !s.tier) return;
+      let prereqId = null;
+      if(s.requires) prereqId = s.requires;
+      else if(s.tier===1) prereqId = center.id;
+      else {
+        let candidate = null;
+        for(const n of nodes){ if(n.subclass===s.subclass && computeTier(n.id)===(s.tier-1)){ candidate = n.id; break; } }
+        prereqId = candidate || center.id;
+      }
+      nodes.push({ id:s.id, label:s.label||s.id, glyph:s.glyph||'rune', prereq:[prereqId], subclass:s.subclass });
+    });
+  }
+
   // Fast lookup
   const nodeById = new Map(nodes.map(n => [n.id, n]));
 
@@ -129,6 +147,11 @@
 
   // Primary parent and children mapping (first prereq)
   const primaryParent = {}; nodes.forEach(n=>{ primaryParent[n.id] = (n.prereq && n.prereq[0]) || null; });
+  // Now that primaryParent exists, allow modular custom skills to be injected
+  addCustomSkills(CUSTOM_SKILLS);
+  // Rebuild maps after injection
+  Object.keys(primaryParent).forEach(k=> delete primaryParent[k]);
+  nodes.forEach(n=>{ primaryParent[n.id] = (n.prereq && n.prereq[0]) || null; });
   const children = {}; nodes.forEach(n=> children[n.id] = []);
   nodes.forEach(n=>{ const p = primaryParent[n.id]; if(p) children[p].push(n.id); });
 
