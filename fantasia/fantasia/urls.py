@@ -22,7 +22,26 @@ from django.http import HttpResponse
 def test(request):
     return HttpResponse("Hello from fantasia on Vercel")
 
+
+def static_test(request):
+    return HttpResponse(
+        """
+        <!doctype html>
+        <html>
+          <head>
+            <link rel=\"stylesheet\" href=\"/static/css/test.css\">
+          </head>
+          <body>
+            <h1>Static OK</h1>
+            <p>This page uses /static/css/test.css</p>
+          </body>
+        </html>
+        """,
+        content_type="text/html",
+    )
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('test/', test, name='test'),
+    path('static-test/', static_test, name='static_test'),
 ]
