@@ -1,6 +1,46 @@
-.skill-tree-container{height:100vh;background:radial-gradient(1200px 700px at 50% 50%,#0b1220 0%,#070b14 55%,#05070e 100%);}
-.skill-tree{display:block}
-.link{fill:none;stroke:#56ccf2;stroke-width:6px;filter:url(#glow);stroke-linecap:round;stroke-dasharray:6 6}
-.node .node-bg{fill:#0e1629;stroke:#9b51e0;stroke-width:3px;filter:url(#glow)}
-.node:hover .node-bg{stroke:#f2c94c}
-.node .node-label{font:700 14px/1.2 Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;fill:#e6eefc;text-anchor:middle}
+.skill-tree-container{height:100vh;display:grid;place-items:center;position:relative;background:radial-gradient(1200px 700px at 50% 50%,#0a0a12 0%,#0a0a0f 60%,#07070c 100%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><defs><radialGradient id="g" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%231a1a2e"/><stop offset="100%" stop-color="%23090912"/></radialGradient></defs><rect width="100%" height="100%" fill="url(%23g)"/></svg>') center/cover no-repeat}
+.skill-legend{position:absolute;top:14px;left:14px;z-index:1000;pointer-events:auto;background:#0f1322cc;color:#e8ecf6;border:1px solid #334155;padding:8px 10px;border-radius:10px;font:600 12px/1.2 Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;display:flex;flex-wrap:wrap;gap:8px;backdrop-filter: blur(6px)}
+.skill-legend .chip{display:inline-flex;align-items:center;gap:6px;padding:4px 6px;border-radius:999px;border:1px solid #334155}
+.skill-legend .chip.active{background:#0f172a;border-color:#64748b;box-shadow:0 0 0 2px rgba(100,116,139,.35) inset}
+.skill-legend .dot{width:10px;height:10px;border-radius:999px;display:inline-block}
+.skill-tree{width:100%;height:100%;display:block}
+
+/* Arcane lattice grid */
+.skill-tree{background-image:
+  radial-gradient(circle at center, rgba(255,230,200,0.06) 1px, transparent 1px),
+  radial-gradient(circle at center, rgba(200,220,255,0.05) 1px, transparent 1px),
+  radial-gradient(circle at center, rgba(180,255,230,0.04) 1px, transparent 1px);
+background-size: 80px 80px, 160px 160px, 240px 240px;
+background-position: center;mix-blend-mode:screen}
+
+/* Enchanted links */
+.link{fill:none;stroke-width:5px;stroke-linecap:round;opacity:.95}
+.link.glow{filter:url(#glow)}
+.link.locked{stroke:#334155;opacity:.5}
+.link.unlocked{stroke:#22d3ee;opacity:1}
+.link.unlockable{stroke:#f59e0b;opacity:1}
+.link.dim{opacity:.15}
+.link.selected{stroke-width:7px;opacity:1}
+
+/* Hex nodes */
+.node .ring{fill:rgba(10,14,24,.8);stroke-width:3.5px;filter:url(#glow)}
+.node.center .ring{stroke:url(#nodeStrokeCenter);stroke-width:4px}
+.node:hover .ring{filter:url(#glow);}
+.node.locked .ring{opacity:.6}
+.node.unlockable .ring{opacity:1}
+.node.unlocked .ring{opacity:1}
+.node.tier-2 .ring{stroke-width:4.5px}
+.node.tier-3 .ring{stroke-width:5.5px}
+.node.tier-4 .ring{stroke-width:6px}
+.node.dim .ring{opacity:.15}
+.node.dim .node-content{opacity:.22;transition:opacity .12s linear}
+.node.dim .glyph{opacity:.16}
+.node.dim .label{opacity:.16;stroke-opacity:0}
+.node.selected .ring{stroke-width:5px;filter:url(#glow)}
+
+/* Typography: use a fantasy feel */
+@font-face{font-family:'UnifrakturCook';src:local('UnifrakturCook');font-display:swap}
+.label{font:600 13.5px/1.25 Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;fill:#e8ecf6;letter-spacing:.15px;text-anchor:middle;paint-order:stroke fill;stroke:#0a0a12;stroke-width:3px;pointer-events:none}
+
+/* Tooltip: ornate card */
+.skill-tooltip{position:absolute;padding:10px 12px;border-radius:10px;background:#14121a;color:#f5f2e8;border:1px solid #574b90;box-shadow:0 10px 50px rgba(87,75,144,.35), inset 0 0 16px rgba(168,85,247,.2);font:600 12px/1.2 "Cinzel", Garamond, serif;pointer-events:none}
