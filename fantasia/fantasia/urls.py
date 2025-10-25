@@ -40,8 +40,24 @@ def static_test(request):
         content_type="text/html",
     )
 
+
+def image_test(request):
+    return HttpResponse(
+        """
+        <!doctype html>
+        <html>
+          <body>
+            <h1>Image Test</h1>
+            <img src=\"/static/img/test.svg\" alt=\"test image\" width=\"300\"/>
+          </body>
+        </html>
+        """,
+        content_type="text/html",
+    )
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('test/', test, name='test'),
     path('static-test/', static_test, name='static_test'),
+    path('image-test/', image_test, name='image_test'),
 ]
