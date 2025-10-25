@@ -60,126 +60,129 @@
     // Core tier-1 branch roots
     { subclass:'Dark Magic', start:'necromancer', chain:[
       { id:'dark-bullet', label:'Dark Bullet', glyph:'bullet', desc:'A quick, piercing dart of darkness.' },
-      { id:'void-lance', label:'Void Lance', glyph:'bullet', desc:'A concentrated lance that rips through ranks.' },
-      { id:'abyssal-comet', label:'Abyssal Comet', glyph:'orb', desc:'Call a void comet to crater the field.' },
-      { id:'event-horizon', label:'Event Horizon', glyph:'orb', desc:'Crush space itself; nothing escapes.' },
-      { id:'singularity', label:'Singularity', glyph:'orb', desc:'Unstable point that consumes the battlefield.' }
+      { id:'void-lance', label:'Void Lance', glyph:'bullet', desc:'A concentrated lance that rips through armored enemies.' },
+      { id:'abyssal-comet', label:'Abyssal Comet', glyph:'orb', desc:'Call a void comet to crater the field, attacks multiple enemies.' },
+      { id:'event-horizon', label:'Event Horizon', glyph:'orb', desc:'Huge void sphere that crushes everything in its path for massive damage.' },
+      { id:'singularity', label:'Singularity', glyph:'orb', desc:'Unstable point that consumes the battlefield, attacks multiple enemies for massive damage.' }
     ]},
     { subclass:'Necromancer', start:'necromancer', chain:[
-      { id:'necromancy', label:'Necromancy', glyph:'skull', desc:'Raise the dead and bind their wills.' },
-      { id:'grave-harvest', label:'Grave Harvest', glyph:'hand', desc:'Reap remnants to empower your retinue.' },
-      { id:'rotting-plague', label:'Rotting Plague', glyph:'rune', desc:'Spreading decay that softens armies.' },
-      { id:'lichdom', label:'Lichdom', glyph:'rune', desc:'Transcend life; power without breath.' },
-      { id:'deathlord', label:'Deathlord', glyph:'rune', desc:'Absolute command over legions of dead.' }
+      { id:'necromancy', label:'Necromancy', glyph:'skull', desc:'Raise the dead and bind their wills to serve you.' },
+      { id:'grave-harvest', label:'Grave Harvest', glyph:'hand', desc:'Harvest souls from the dead to empower your existing minions.' },
+      { id:'rotting-plague', label:'Rotting Plague', glyph:'rune', desc:'Empowers your minions with a disease that boosts their potency in return for a portion of their health.' },
+      { id:'lichdom', label:'Lichdom', glyph:'rune', desc:'Ascend to a state of undeath that grants you doubled necromantic potency.' },
+      { id:'deathlord', label:'Deathlord', glyph:'rune', desc:'Absolute command over legions of dead, granting you an additional doubled necromantic potency.' }
     ]},
     { subclass:'Trapper', start:'necromancer', chain:[
-      { id:'shadow-binding', label:'Shadow Binding', glyph:'chains', desc:'Shadows seize ankles and wills.' },
-      { id:'snare-runes', label:'Snare Runes', glyph:'rune', desc:'Scripted catches that spring silently.' },
-      { id:'nether-trap', label:'Nether Trap', glyph:'web', desc:'Planar drag that saps strength.' },
-      { id:'nocturne-web', label:'Nocturne Web', glyph:'web', desc:'A night lattice that halts battalions.' }
+      { id:'shadow-sewing', label:'Shadow Sewing', glyph:'chains', desc:'Shadows seize ankles and wills, slowing and stunning enemies.' },
+      { id:'snare-runes', label:'Snare Runes', glyph:'rune', desc:'Scripted catches that spring silently, stunning enemies.' },
+      { id:'nether-trap', label:'Nether Trap', glyph:'web', desc:'Planar drag that saps strength, stunning enemies and debuffing their armor.' },
+      { id:'nocturne-web', label:'Nocturne Web', glyph:'web', desc:'A night lattice that halts battalions, stunning multiple enemies and debuffing their armor.' }
     ]},
-    { subclass:'Trapper', start:'shadow-binding', chain:[
-      { id:'shadow-sewing', label:'Shadow Sewing', glyph:'needle', desc:'Stitch light to bind every step.' },
-      { id:'silk-ambush', label:'Silk Ambush', glyph:'needle', desc:'Hidden filaments that strike unseen.' },
-      { id:'midnight-collapse', label:'Midnight Collapse', glyph:'web', desc:'Crush the snared in a sudden fall.' }
-    ]},
-    { subclass:'Trapper', start:'shadow-binding', chain:[
+    { subclass:'Trapper', start:'shadow-sewing', chain:[
       { id:'night-veil', label:'Night Veil', glyph:'web', desc:'A veil of gloom that blinds and chills.' },
-      { id:'raven-scout', label:'Raven Scout', glyph:'raven', desc:'Eyes in the dark; mark and reveal.' }
+      { id:'raven-scout', label:'Raven Scout', glyph:'raven', desc:'Send a raven to reconnoiter and mark threats as well as mark weaknesses.' }
     ]},
     { subclass:'Hemomancer', start:'necromancer', chain:[
-      { id:'bloodletting', label:'Bloodletting', glyph:'dagger', desc:'Power for blood, blood for power.' },
-      { id:'hemorrhage', label:'Hemorrhage', glyph:'dagger', desc:'Internal bleeding builds into bursts.' },
-      { id:'arterial-surge', label:'Arterial Surge', glyph:'dagger', desc:'Turn loss into explosive force.' },
-      { id:'crimson-maelstrom', label:'Crimson Maelstrom', glyph:'orb', desc:'A storm of shredding sanguine.' },
-      { id:'scarlet-apotheosis', label:'Scarlet Apotheosis', glyph:'rune', desc:'Ascend by blood into terrible grace.' }
+      { id:'bloodletting', label:'Bloodletting', glyph:'dagger', desc:'Allows drawing health from enemies and yourself to empower your spells.' },
+      { id:'hemorrhage', label:'Hemorrhage', glyph:'dagger', desc:'Enemies bleed out, causing them to take damage over time.' },
+      { id:'arterial-surge', label:'Arterial Surge', glyph:'dagger', desc:'Enemies that lose enough health can explode, dealing massive damage to themselves.' },
+      { id:'crimson-maelstrom', label:'Crimson Maelstrom', glyph:'orb', desc:'Accumulated blood can be unleashed as a growing storm that grows stronger over time.' },
+      { id:'scarlet-apotheosis', label:'Scarlet Apotheosis', glyph:'rune', desc:'Ascension spell, granting your hemomancer spells twofold potency.' }
     ]},
     { subclass:'Hemomancer', start:'bloodletting', chain:[
-      { id:'sanguine-ward', label:'Sanguine Ward', glyph:'shield', desc:'A barrier fed by your life.' },
-      { id:'vitae-drain', label:'Vitae Drain', glyph:'vessel', desc:'Sip vitality to refill the chalice.' },
-      { id:'blood-ritual', label:'Blood Ritual', glyph:'rune', desc:'A pact of cost for overwhelming might.' },
-      { id:'blood-meteor', label:'Blood Meteor', glyph:'orb', desc:'Hurl congealed fury from the sky.' }
+      { id:'sanguine-ward', label:'Sanguine Ward', glyph:'shield', desc:'A barrier fed by your life that absorbs damage.' },
+      { id:'vitae-drain', label:'Vitae Drain', glyph:'vessel', desc:'Draws health from enemies to refill your own.' },
+      { id:'blood-ritual', label:'Blood Ritual', glyph:'rune', desc:'Sacrifice your blood to empower a spell.' },
+      { id:'blood-bond', label:'Blood Bond', glyph:'orb', desc:'Enemies can be bonded to each other, damage to them is shared with the bonded enemies.' }
     ]},
     { subclass:'Witchcraft', start:'necromancer', chain:[
-      { id:'curse-of-frailty', label:'Curse of Frailty', glyph:'rune', desc:'Strip strength; make the mighty brittle.' },
-      { id:'hexweave', label:'Hexweave', glyph:'rune', desc:'Layer curses into a suffocating weave.' },
-      { id:'malison', label:'Malison', glyph:'rune', desc:'Deep curse that worsens with every strike.' },
-      { id:'grand-hex', label:'Grand Hex', glyph:'rune', desc:'A reality-bending malediction.' }
+      { id:'curse-of-frailty', label:'Curse of Frailty', glyph:'rune', desc:'Strip strength, reduces enemy armor and resistances.' },
+      { id:'hexweave', label:'Hexweave', glyph:'rune', desc:'Layer curses onto a weapon, making it hex on hit.' },
+      { id:'malison', label:'Malison', glyph:'rune', desc:'Deep curse that applies stacking damage over time.' },
+      { id:'grand-hex', label:'Grand Hex', glyph:'rune', desc:'Warps reality, causing enemies to take massive damage if uninterrupted.' }
     ]},
     { subclass:'Witchcraft', start:'curse-of-frailty', chain:[
-      { id:'evil-eye', label:'Evil Eye', glyph:'eye', desc:'A gaze that withers resolve.' },
-      { id:'witchfire', label:'Witchfire', glyph:'flame', desc:'Eldritch flame that eats defenses.' },
-      { id:'black-sabbath', label:'Black Sabbath', glyph:'flame', desc:'A rite that drowns armies in ruin.' }
+      { id:'evil-eye', label:'Evil Eye', glyph:'eye', desc:'A gaze that withers resolve, causing enemies to grow afraid and flee.' },
+      { id:'sleep', label:'Drowsy Gaze', glyph:'flame', desc:'Causes enemies to fall asleep, making them vulnerable to attack.' },
+      { id:'black-sabbath', label:'Black Sabbath\'s Eye', glyph:'flame', desc:'Enemies sufficiently weak will lose their souls and immediately die.' }
     ]},
     { subclass:'Witchcraft', start:'evil-eye', chain:[
       { id:'silence', label:'Silence', glyph:'rune', desc:'Still the voice of magic.' }
     ]},
     { subclass:'Sentinel', start:'necromancer', chain:[
-      { id:'incendiary-regulation', label:'Incendiary Regulation', glyph:'flame', desc:'Harness inner fire into discipline.' },
-      { id:'iron-will', label:'Iron Will', glyph:'hand', desc:'Resolve that does not bend.' },
-      { id:'unbreakable', label:'Unbreakable', glyph:'shield', desc:'Stagger turns to mere shivers.' },
-      { id:'adamantine-aegis', label:'Adamantine Aegis', glyph:'shield', desc:'A near-absolute bulwark.' }
+      { id:'incendiary-regulation', label:'Incendiary Regulation', glyph:'flame', desc:'Harness inner fire into discipline, warms your body.' },
+      { id:'iron-will', label:'Iron Will', glyph:'hand', desc:'Resolves the mind, granting immunity to impairing mental effects.' },
+      { id:'unbreakable', label:'Unbreakable', glyph:'shield', desc:'Resolves the body, granting immunity to impairing physical effects.' },
+      { id:'adamantine-aegis', label:'Adamantine Aegis', glyph:'shield', desc:'Allows a single instance of shielding that can block any physical attack in existence.' }
     ]},
     { subclass:'Sentinel', start:'incendiary-regulation', chain:[
-      { id:'stone-skin', label:'Stone Skin', glyph:'shield', desc:'Flesh like rock; steady and sure.' },
-      { id:'phoenix-heart', label:'Phoenix Heart', glyph:'flame', desc:'Kindle back from ruin again and again.' },
-      { id:'immortal-stand', label:'Immortal Stand', glyph:'hand', desc:'For a moment, you do not fall.' }
+      { id:'stone-skin', label:'Stone Skin', glyph:'shield', desc:'Hardens your body, granting resistance to physical damage.' },
+      { id:'phoenix-heart', label:'Phoenix Heart', glyph:'flame', desc:'Burns any poisons or curses in your soul.' },
+      { id:'immortal-stand', label:'Immortal Stand', glyph:'hand', desc:'For a few seconds, you are effectively immortal.' }
     ]},
     { subclass:'Alchemist', start:'necromancer', chain:[
       { id:'time-to-cook', label:'Time to Cook', glyph:'bottle', desc:'Unlock recipes from scavenged reagents.' },
-      { id:'brew-volatile', label:'Brew Volatile', glyph:'bottle', desc:'Unstable mixtures for thunder and smoke.' },
-      { id:'homunculus', label:'Homunculus', glyph:'orb', desc:'An assistant to extend your craft.' },
-      { id:'philosophers-storm', label:"Philosopher's Storm", glyph:'bottle', desc:'The lab unleashed upon the world.' }
+      { id:'brew-volatile', label:'Brew Volatile', glyph:'bottle', desc:'You may mix random ingredients to create a volatile brew.' },
+      { id:'homunculus', label:'Homunculus', glyph:'orb', desc:'An assistant to extend your craft, streamlines your alchemical process.' },
+      { id:'philosophers-storm', label:"Philosopher's Storm", glyph:'bottle', desc:'Allows your mana to subsitute certain ingredients.' }
     ]},
     { subclass:'Alchemist', start:'time-to-cook', chain:[
       { id:'acid-flask', label:'Acid Flask', glyph:'bottle', desc:'Armor-melting tinctures on demand.' },
-      { id:'dragon-tincture', label:'Dragon Tincture', glyph:'vessel', desc:'Rare tonic that surges power at a cost.' },
-      { id:'primal-elixir', label:'Primal Elixir', glyph:'vessel', desc:'Mind and body supercharged to the brink.' }
+      { id:'dragon-tincture', label:'Dragon Tincture', glyph:'vessel', desc:'Rare tonic that surges power for a few seconds.' },
+      { id:'primal-elixir', label:'Primal Elixir', glyph:'vessel', desc:'Any elixir can be supercharged (2x potency) in return for a small chance of a chaotic effect.' }
     ]},
     { subclass:'Succubus', start:'necromancer', chain:[
-      { id:'life-siphon', label:'Charm Siphon', glyph:'vessel', desc:'Sip life from those who adore you.' },
-      { id:'allure', label:'Allure', glyph:'eye', desc:'Lower every guard with a glance.' },
-      { id:'dominate', label:'Dominate', glyph:'eye', desc:'Seize the reins of a weakened mind.' },
-      { id:'soul-throne', label:'Soul Throne', glyph:'eye', desc:'Rule from a seat of bound souls.' }
+      { id:'rat-queen', label:'Rat Queen', glyph:'vessel', desc:'Partners that are sufficiently aroused may be mind read and have their thoughts partially influenced.' },
+      { id:'allure', label:'Alluring Gaze', glyph:'eye', desc:'Men and monsters can be seduced with eye contact. Stronger individuals require more time to seduce.' },
+      { id:'warm-blood', label:'Warm Blood', glyph:'heart', desc:'Inflicts the aroused effect on an enemy or ally, making them singlemindedly focused on you.' },
+      { id:'soul-throne', label:'Soul Throne', glyph:'hand', desc:'Enemies or allies that are seduced will take critical damage with any hit from you.' }
     ]},
-    { subclass:'Succubus', start:'life-siphon', chain:[
-      { id:'night-kiss', label:'Night Kiss', glyph:'hand', desc:'A mark that drains and binds.' },
-      { id:'essence-bond', label:'Essence Bond', glyph:'rune', desc:'Your fate entwined; harm and boon shared.' },
-      { id:'sovereign-temptation', label:'Sovereign Temptation', glyph:'hand', desc:'Even leaders kneel to your will.' }
+    { subclass:'Succubus', start:'rat-queen', chain:[
+      { id:'night-kiss', label:'Night Kiss', glyph:'hand', desc:'A mark that drains and binds a person\'s health and mana.' },
+      { id:'essence-bond', label:'Essence Bond', glyph:'rune', desc:'Sleeping with a partner will grant you their essence, causing a small permanent boost to a stat.' },
+      { id:'sovereign-temptation', label:'Sovereign Temptation', glyph:'hand', desc:'Sleeping with a partner will grant you a unique skill of theirs permanently once.' }
     ]},
 
     // Additional example chains previously added
     { subclass:'Witchcraft', start:'hexweave', chain:[
-      { id:'hex-storm', label:'Hex Storm', glyph:'rune', desc:'Burst of layered maledictions that cascade on impact.' },
+      { id:'hex-storm', label:'Hex Storm', glyph:'rune', desc:'Burst of layered maledictions that cascade on impact, allowing for layered hexes.' },
       { id:'hex-maelstrom', label:'Hex Maelstrom', glyph:'rune', desc:'A spiraling torrent of curses amplifying all afflictions.' }
     ]},
-    { subclass:'Trapper', start:'shadow-binding', chain:[
-      { id:'snare-matrix', label:'Snare Matrix', glyph:'web', desc:'Interlinked snares multiply restraint with each trigger.' },
-      { id:'shadow-cage', label:'Shadow Cage', glyph:'web', desc:'A collapsing lattice that imprisons and weakens.' }
+    { subclass:'Trapper', start:'shadow-sewing', chain:[
+      { id:'snare-matrix', label:'Snare Matrix', glyph:'web', desc:'Interlinked snares multiply restraint with each attempt at resistance.' },
+      { id:'shadow-cage', label:'Shadow Cage', glyph:'web', desc:'A collapsing lattice that imprisons and weakens, crushing them if they are too weak.' }
     ]},
     { subclass:'Alchemist', start:'time-to-cook', chain:[
-      { id:'mercury-bomb', label:'Mercury Bomb', glyph:'bottle', desc:'Volatile mercury charge shatters armor and poise.' },
-      { id:'fulminate-core', label:'Fulminate Core', glyph:'bottle', desc:'Condensed explosive core for catastrophic detonations.' }
+      { id:'mercury-bomb', label:'Mercury Bomb', glyph:'bottle', desc:'Volatile mercury mixed into potions allow the creation of bombs.' },
+      { id:'fulminate-core', label:'Fulminate Core', glyph:'bottle', desc:'Condensed explosive core for catastrophically larger explosions.' }
     ]},
     { subclass:'Sentinel', start:'iron-will', chain:[
-      { id:'obsidian-guard', label:'Obsidian Guard', glyph:'shield', desc:'A hard-black guard that drinks the shock of blows.' },
-      { id:'bastion-dome', label:'Bastion Dome', glyph:'shield', desc:'Deploy a dome that turns sieges into pebbles.' }
+      { id:'obsidian-guard', label:'Obsidian Guard', glyph:'shield', desc:'A hard-black guard that resists magic especially well.' },
+      { id:'bastion-dome', label:'Bastion Dome', glyph:'shield', desc:'Deploy a dome that deflects wide-ranged magical attacks.' }
     ]},
     { subclass:'Hemomancer', start:'bloodletting', chain:[
-      { id:'blood-sear', label:'Blood Sear', glyph:'dagger', desc:'Scalding blood brands foes, stacking pain.' },
-      { id:'scarlet-overlord', label:'Scarlet Overlord', glyph:'rune', desc:'Rule the battlefield with sanguine dominion.' }
+      { id:'blood-sear', label:'Blood Sear', glyph:'dagger', desc:'Scalding blood infuses onto a weapon, causing attacks to open increasingly more wounds..' },
+      { id:'scarlet-overlord', label:'Scarlet Overlord', glyph:'rune', desc:'With enough cuts, the enemy will immediately die and all its blood will be absorbed.' }
     ]},
-    { subclass:'Succubus', start:'life-siphon', chain:[
-      { id:'velvet-thrall', label:'Velvet Thrall', glyph:'eye', desc:'Your admirers become your willing shields.' },
-      { id:'queen-of-hearts', label:'Queen of Hearts', glyph:'hand', desc:'Absolute enthrallment bends crowds to your whim.' }
+    { subclass:'Succubus', start:'rat-queen', chain:[
+      { id:'velvet-thrall', label:'Velvet Thrall', glyph:'eye', desc:'Monsters may be seduced into temporary allies.' },
+      { id:'queen-of-hearts', label:'Queen of Hearts', glyph:'hand', desc:'Monsters may be seduced into permanent allies.' }
+    ]},
+    { subclass:'Succubus', start:'rat-queen', chain:[
+      { id:'tangentially-related', label:'Tangentially Related', glyph:'heart', desc:'Your skill with the glaive is proportional to the max size of dick you\'ve taken so far.' },
     ]},
     { subclass:'Dark Magic', start:'dark-bullet', chain:[
-      { id:'umbral-needle', label:'Umbral Needle', glyph:'bullet', desc:'A precise pierce that bleeds darkness.' },
-      { id:'penumbra-lance', label:'Penumbra Lance', glyph:'bullet', desc:'A charged lance that ruptures lines.' }
+      { id:'umbral-needle', label:'Umbral Needle', glyph:'bullet', desc:'Coat your weapon with darkness, causing every strike to inflict dark magic damage.' },
+      { id:'penumbra-lance', label:'Penumbra Lance', glyph:'bullet', desc:'Enhance your weapon with darkness, causing it to cast dark magic on every strike.' }
     ]},
     { subclass:'Necromancer', start:'necromancy', chain:[
-      { id:'grave-march', label:'Grave March', glyph:'skull', desc:'Your dead march faster, harder, together.' },
-      { id:'ossuary-king', label:'Ossuary King', glyph:'skull', desc:'Crown of bone bolsters every minion.' }
+      { id:'grave-march', label:'Grave March', glyph:'skull', desc:'Your dead march faster, harder, and more unified.' },
+      { id:'ossuary-king', label:'Ossuary King', glyph:'skull', desc:'Crown of bone bolsters a specific minion, making it stronger and those that rally around it to regenerate automatically.' }
+    ]},
+    { subclass:'Necromancer', start:'necromancy', chain:[
+      { id:'vessel-creation', label:'Vessel Creation', glyph:'rune', desc:'You have the ability to create vessels for your soul.' },
+      { id:'instant-swap', label:'Instant Swap', glyph:'rune', desc:'A soul can immediately swap to a different vessel regardless of distance.' },
+      { id:'permeance', label:'Permeance', glyph:'rune', desc:'Two vessels may be active at the same time.' },
     ]},
   ];
   function computeTier(id){ let t=0, cur=id; while(cur && cur!==center.id){ const p = primaryParent[cur]; if(!p) break; t++; cur=p; } return t; }
@@ -204,7 +207,7 @@
 
       // Single node form (optionally with children)
       if(!s.id) return;
-      const sc = s.subclass || inheritSubclass; if(!sc) return;
+      const sc = s.subclass || inheritSubclass; if(!sc) return; // require subclass at top level
       let prereqId = parentId;
       if(!prereqId){
         if(s.requires) prereqId = s.requires;
@@ -289,13 +292,13 @@
   const primaryRootBySubclass = {};
   const preferredRootBySubclass = {
     'Hemomancer':'bloodletting',
-    'Trapper':'shadow-binding',
+    'Trapper':'shadow-sewing',
     'Necromancer':'necromancy',
     'Witchcraft':'curse-of-frailty',
     'Alchemist':'time-to-cook',
     'Sentinel':'incendiary-regulation',
     'Dark Magic':'dark-bullet',
-    'Succubus':'life-siphon'
+    'Succubus':'rat-queen'
   };
   subclasses.forEach(sc=>{
     const list = (rootsBySubclass[sc]||[]).slice();
@@ -333,7 +336,7 @@
       const start = clamp(sec.base - span/2, sec.start+gut, sec.end-gut - (span>0?0:0));
       const count = list.length;
       const step = (count>1)? span/(count-1):0;
-    list.forEach((id, idx)=>{
+      list.forEach((id, idx)=>{
         const lr = layoutRootOf[id];
         const dAbs = (depth[lr]||1) + sd;
         const bandDensity = Math.min(1.0, Math.max(0, (count-1)/8));
@@ -551,8 +554,7 @@
       'army-of-bones':'Raise an entire cohort of skeletal soldiers.',
       'deathlord':'Ascend as a Deathlord, empowering all undead.',
       // Trapper
-      'shadow-binding':'Snare foes with living shadows that hold them.',
-      'shadow-sewing':'Stitch shadows into tripwires and anchors.',
+      'shadow-sewing':'Snare foes with living shadows that hold them.',
       'night-veil':'Veil the field, reducing enemy vision and accuracy.',
       'shadow-step':'Blink between shadows, ignoring obstacles.',
       'snare-runes':'Inscribe traps that trigger on approach.',
@@ -611,6 +613,7 @@
       'sovereign-temptation':'Absolute allure that turns leaders.',
     };
     const t = Math.max(1, depth[id] || 1);
+    // Prefer custom per-node description if provided via CUSTOM_SKILLS
     const n = nodeById.get(id);
     const custom = n && n.desc ? n.desc : '';
     const text = custom || desc[id] || '';
@@ -743,6 +746,7 @@
   // Glyph drawer (same as previous, trimmed)
   function drawGlyph(name, size){
     const g = el('g', { class:'glyph' });
+    if(name==='heart'){ g.appendChild(el('path',{d:'M11 20c-5-3-9-6-9-10 0-3 2-5 5-5 2 0 3 1 4 2 1-1 2-2 4-2 3 0 5 2 5 5 0 4-4 7-9 10Z', fill:'#ef4444'})); return g; }
     if(name==='skull'){ g.appendChild(el('path',{d:'M11 0c6 0 11 5 11 11 0 5-3 7-6 9v3H6v-3C3 18 0 16 0 11 0 5 5 0 11 0Z', fill:'#f5f2e8'})); g.appendChild(el('circle',{cx:'7', cy:'9', r:'2', fill:'#0f0d15'})); g.appendChild(el('circle',{cx:'15', cy:'9', r:'2', fill:'#0f0d15'})); return g; }
     if(name==='flame'){ g.appendChild(el('path',{d:'M11 0c3 6-1 7 2 11 2 2 2 6-1 8-3 2-7 1-9-2-2-3-1-6 1-8 4-4 3-7 7-9Z', fill:'#f59e0b'})); return g; }
     if(name==='chains'){ g.appendChild(el('rect',{x:'2',y:'6',width:'6',height:'10',rx:'3',fill:'#9ca3af'})); g.appendChild(el('rect',{x:'12',y:'6',width:'6',height:'10',rx:'3',fill:'#9ca3af'})); g.appendChild(el('rect',{x:'7',y:'6',width:'6',height:'10',rx:'3',fill:'#9ca3af', opacity:'.6'})); return g; }
