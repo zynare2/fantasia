@@ -1,7 +1,7 @@
 .skill-tree-container{height:100vh;display:grid;place-items:center;position:relative;background:radial-gradient(1200px 700px at 50% 50%,#0a0a12 0%,#0a0a0f 60%,#07070c 100%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><defs><radialGradient id="g" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%231a1a2e"/><stop offset="100%" stop-color="%23090912"/></radialGradient></defs><rect width="100%" height="100%" fill="url(%23g)"/></svg>') center/cover no-repeat}
 .skill-legend{position:absolute;top:14px;left:14px;z-index:1000;pointer-events:auto;background:#0f1322cc;color:#e8ecf6;border:1px solid #334155;padding:8px 10px;border-radius:10px;font:600 12px/1.2 Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;display:flex;flex-wrap:wrap;gap:8px;backdrop-filter: blur(6px)}
 .skill-legend .chip{display:inline-flex;align-items:center;gap:6px;padding:4px 6px;border-radius:999px;border:1px solid #334155}
-.skill-legend .chip.active{background:#0f172a;border-color:#64748b;box-shadow:0 0 0 2px rgba(100,116,139,.35) inset}
+.skill-legend .chip.active{background:#0f172a;border-color:#64748b;box-shadow:0 0 0 2px rgba(100,116,139,.35) inset;color:#fff}
 .skill-legend .dot{width:10px;height:10px;border-radius:999px;display:inline-block}
 .skill-tree{width:100%;height:100%;display:block}
 

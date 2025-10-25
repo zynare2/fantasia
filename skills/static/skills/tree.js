@@ -34,7 +34,7 @@
   svg.appendChild(viewport);
   // Pan/zoom state (declared early so helpers can use them)
   let s = 1, tx = 0, ty = 0;
-  const minS = 0.4, maxS = 2.5;
+  const minS = 0.2, maxS = 2.5;
   // Fixed subclass set (eight slices) and colors (renamed)
   const SUBCLASSES = ['Dark Magic','Necromancer','Trapper','Hemomancer','Witchcraft','Sentinel','Alchemist','Succubus'];
   const subclassColors = {
